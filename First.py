@@ -1,8 +1,9 @@
 def sudy_nebo_lichy(cislo):
     if cislo % 2 == 0:
-        return "Číslo {} je sudé".format(cislo)
+        print(f"Číslo {cislo} je sudé")
     else:
-        return "Číslo {} je liché".format(cislo)
+        print(f"Číslo {cislo} je liché")
 
-print(sudy_nebo_lichy(5))
-print(sudy_nebo_lichy(1000000))
+# Volání funkce
+sudy_nebo_lichy(5)
+sudy_nebo_lichy(1000000)
