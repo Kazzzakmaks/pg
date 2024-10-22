@@ -1,28 +1,20 @@
-def cislo_text(cislo):
-    # Převod vstupního čísla na celé číslo
-    cislo = int(cislo)
+def je_prvocislo(cislo):
     
-    jednotky = ["nula", "jedna", "dva", "tři", "čtyři", "pět", "šest", "sedm", "osm", "devět"]
-    desitky_do_20  = ["jedenáct", "dvanáct", "třináct", "čtrnáct", "patnáct", "šestnáct", "sedmnáct", "osmnáct", "devatenáct"]
-    desitky = ["", "deset", "dvacet", "třicet", "čtyřicet", "padesát", "šedesát", "sedmdesát", "osmdesát", "devadesát"]
+    if cislo <= 1:
+        return False
+    for i in range(2, int(cislo**0.5) + 1):
+        if cislo % i == 0:
+            return False
+    return True
 
-    if 0 <= cislo < 10:
-        return jednotky[cislo]
-    elif 10 < cislo < 20:
-        return desitky_do_20 [cislo - 11]
-    elif cislo == 10:
-        return desitky[1]
-    elif 20 <= cislo < 100:
-        deset = desitky[cislo // 10]
-        jednotka = jednotky[cislo % 10]
-        return deset if jednotka == "nula" else f"{deset} {jednotka}"
-    elif cislo == 100:
-        return "sto"
-    else:
-        return "Číslo mimo rozsah"
+def vrat_prvocisla(maximum):
+    
+    return [cislo for cislo in range(2, maximum + 1) if je_prvocislo(cislo)]
 
 if __name__ == "__main__":
-    cislo = input("Zadej číslo: ")
-    text = cislo_text(cislo)
-    print(text)
-
+    try:
+        maximum = int(input("Zadej maximum: "))
+        prvocisla = vrat_prvocisla(maximum)
+        print(prvocisla)
+    except ValueError:
+        print("Zadej platné celé číslo!")
